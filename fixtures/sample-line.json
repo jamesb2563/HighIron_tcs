@@ -1,0 +1,540 @@
+{
+ "version": 0.6,
+ "generator": "make-fixture.js",
+ "elements": [
+  {
+   "type": "way",
+   "id": 1029,
+   "nodes": [
+    1000,
+    1011,
+    1012,
+    1013,
+    1014,
+    1001,
+    1015,
+    1002,
+    1016,
+    1017,
+    1018,
+    1003,
+    1019,
+    1020,
+    1021,
+    1022,
+    1004,
+    1023,
+    1005,
+    1024,
+    1025,
+    1026,
+    1027,
+    1028,
+    1006
+   ],
+   "tags": {
+    "railway": "rail",
+    "usage": "main",
+    "maxspeed": "70 mph",
+    "name": "Sample Subdivision"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1032,
+   "nodes": [
+    1001,
+    1030,
+    1031,
+    1002
+   ],
+   "tags": {
+    "railway": "rail",
+    "service": "siding",
+    "maxspeed": "20 mph"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1035,
+   "nodes": [
+    1004,
+    1033,
+    1034,
+    1005
+   ],
+   "tags": {
+    "railway": "rail",
+    "service": "siding",
+    "maxspeed": "20 mph"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1038,
+   "nodes": [
+    1003,
+    1036,
+    1037
+   ],
+   "tags": {
+    "railway": "rail",
+    "service": "spur",
+    "maxspeed": "10 mph"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1043,
+   "nodes": [
+    1006,
+    1039,
+    1040,
+    1007,
+    1041,
+    1042,
+    1008
+   ],
+   "tags": {
+    "railway": "rail",
+    "usage": "main",
+    "maxspeed": "79 mph",
+    "name": "Sample Subdivision",
+    "railway:track_ref": "1"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1051,
+   "nodes": [
+    1006,
+    1044,
+    1047,
+    1048,
+    1045,
+    1049,
+    1050,
+    1046,
+    1008
+   ],
+   "tags": {
+    "railway": "rail",
+    "usage": "main",
+    "maxspeed": "79 mph",
+    "name": "Sample Subdivision",
+    "railway:track_ref": "2"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1052,
+   "nodes": [
+    1007,
+    1045
+   ],
+   "tags": {
+    "railway": "rail",
+    "service": "crossover",
+    "maxspeed": "30 mph"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1057,
+   "nodes": [
+    1008,
+    1053,
+    1054,
+    1055,
+    1056,
+    1009
+   ],
+   "tags": {
+    "railway": "rail",
+    "usage": "main",
+    "maxspeed": "79 mph",
+    "name": "Sample Subdivision",
+    "tracks": "2"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1061,
+   "nodes": [
+    1009,
+    1058,
+    1059,
+    1060,
+    1010
+   ],
+   "tags": {
+    "railway": "rail",
+    "usage": "main",
+    "maxspeed": "60 mph",
+    "name": "Sample Subdivision"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1062,
+   "nodes": [
+    1003,
+    1063
+   ],
+   "tags": {
+    "railway": "abandoned"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1000,
+   "lat": 39,
+   "lon": -113
+  },
+  {
+   "type": "node",
+   "id": 1001,
+   "lat": 39,
+   "lon": -112.9,
+   "tags": {
+    "railway": "switch"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1002,
+   "lat": 39,
+   "lon": -112.88,
+   "tags": {
+    "railway": "switch"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1003,
+   "lat": 39,
+   "lon": -112.8,
+   "tags": {
+    "railway": "switch"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1004,
+   "lat": 39,
+   "lon": -112.7,
+   "tags": {
+    "railway": "switch"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1005,
+   "lat": 39,
+   "lon": -112.686,
+   "tags": {
+    "railway": "switch"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1006,
+   "lat": 39,
+   "lon": -112.55,
+   "tags": {
+    "railway": "switch"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1007,
+   "lat": 39,
+   "lon": -112.505,
+   "tags": {
+    "railway": "switch"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1008,
+   "lat": 39,
+   "lon": -112.45,
+   "tags": {
+    "railway": "switch"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1009,
+   "lat": 39,
+   "lon": -112.3
+  },
+  {
+   "type": "node",
+   "id": 1010,
+   "lat": 39,
+   "lon": -112.2
+  },
+  {
+   "type": "node",
+   "id": 1011,
+   "lat": 39,
+   "lon": -112.98
+  },
+  {
+   "type": "node",
+   "id": 1012,
+   "lat": 39,
+   "lon": -112.96
+  },
+  {
+   "type": "node",
+   "id": 1013,
+   "lat": 39,
+   "lon": -112.94
+  },
+  {
+   "type": "node",
+   "id": 1014,
+   "lat": 39,
+   "lon": -112.92
+  },
+  {
+   "type": "node",
+   "id": 1015,
+   "lat": 39,
+   "lon": -112.89
+  },
+  {
+   "type": "node",
+   "id": 1016,
+   "lat": 39,
+   "lon": -112.86
+  },
+  {
+   "type": "node",
+   "id": 1017,
+   "lat": 39,
+   "lon": -112.84
+  },
+  {
+   "type": "node",
+   "id": 1018,
+   "lat": 39,
+   "lon": -112.82
+  },
+  {
+   "type": "node",
+   "id": 1019,
+   "lat": 39,
+   "lon": -112.78
+  },
+  {
+   "type": "node",
+   "id": 1020,
+   "lat": 39,
+   "lon": -112.76
+  },
+  {
+   "type": "node",
+   "id": 1021,
+   "lat": 39,
+   "lon": -112.74
+  },
+  {
+   "type": "node",
+   "id": 1022,
+   "lat": 39,
+   "lon": -112.72
+  },
+  {
+   "type": "node",
+   "id": 1023,
+   "lat": 39,
+   "lon": -112.693
+  },
+  {
+   "type": "node",
+   "id": 1024,
+   "lat": 39,
+   "lon": -112.6633333
+  },
+  {
+   "type": "node",
+   "id": 1025,
+   "lat": 39,
+   "lon": -112.6406667
+  },
+  {
+   "type": "node",
+   "id": 1026,
+   "lat": 39,
+   "lon": -112.618
+  },
+  {
+   "type": "node",
+   "id": 1027,
+   "lat": 39,
+   "lon": -112.5953333
+  },
+  {
+   "type": "node",
+   "id": 1028,
+   "lat": 39,
+   "lon": -112.5726667
+  },
+  {
+   "type": "node",
+   "id": 1030,
+   "lat": 39.00025,
+   "lon": -112.8985
+  },
+  {
+   "type": "node",
+   "id": 1031,
+   "lat": 39.00025,
+   "lon": -112.8815
+  },
+  {
+   "type": "node",
+   "id": 1033,
+   "lat": 39.00025,
+   "lon": -112.6985
+  },
+  {
+   "type": "node",
+   "id": 1034,
+   "lat": 39.00025,
+   "lon": -112.6875
+  },
+  {
+   "type": "node",
+   "id": 1036,
+   "lat": 38.9996,
+   "lon": -112.797
+  },
+  {
+   "type": "node",
+   "id": 1037,
+   "lat": 38.997,
+   "lon": -112.792
+  },
+  {
+   "type": "node",
+   "id": 1039,
+   "lat": 39,
+   "lon": -112.535
+  },
+  {
+   "type": "node",
+   "id": 1040,
+   "lat": 39,
+   "lon": -112.52
+  },
+  {
+   "type": "node",
+   "id": 1041,
+   "lat": 39,
+   "lon": -112.4866667
+  },
+  {
+   "type": "node",
+   "id": 1042,
+   "lat": 39,
+   "lon": -112.4683333
+  },
+  {
+   "type": "node",
+   "id": 1044,
+   "lat": 39.00025,
+   "lon": -112.546
+  },
+  {
+   "type": "node",
+   "id": 1045,
+   "lat": 39.00025,
+   "lon": -112.503,
+   "tags": {
+    "railway": "switch"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1046,
+   "lat": 39.00025,
+   "lon": -112.454
+  },
+  {
+   "type": "node",
+   "id": 1047,
+   "lat": 39.00025,
+   "lon": -112.5316667
+  },
+  {
+   "type": "node",
+   "id": 1048,
+   "lat": 39.00025,
+   "lon": -112.5173333
+  },
+  {
+   "type": "node",
+   "id": 1049,
+   "lat": 39.00025,
+   "lon": -112.4866667
+  },
+  {
+   "type": "node",
+   "id": 1050,
+   "lat": 39.00025,
+   "lon": -112.4703333
+  },
+  {
+   "type": "node",
+   "id": 1053,
+   "lat": 39,
+   "lon": -112.42
+  },
+  {
+   "type": "node",
+   "id": 1054,
+   "lat": 39,
+   "lon": -112.39
+  },
+  {
+   "type": "node",
+   "id": 1055,
+   "lat": 39,
+   "lon": -112.36
+  },
+  {
+   "type": "node",
+   "id": 1056,
+   "lat": 39,
+   "lon": -112.33
+  },
+  {
+   "type": "node",
+   "id": 1058,
+   "lat": 39,
+   "lon": -112.275
+  },
+  {
+   "type": "node",
+   "id": 1059,
+   "lat": 39,
+   "lon": -112.25
+  },
+  {
+   "type": "node",
+   "id": 1060,
+   "lat": 39,
+   "lon": -112.225
+  },
+  {
+   "type": "node",
+   "id": 1063,
+   "lat": 39.01,
+   "lon": -112.8
+  }
+ ]
+}

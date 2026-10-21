@@ -1,0 +1,11 @@
+{
+  "name": "highiron-tcs",
+  "private": true,
+  "type": "module",
+  "description": "Traffic control system and railnet built from OpenStreetMap rail data. No build step; package.json exists only so Node runs the tests as ES modules.",
+  "scripts": {
+    "test": "node --test",
+    "fixture": "node fixtures/make-fixture.js",
+    "build:jax": "node tools/build-railnet.js data/jacksonville.osm.json data/jacksonville-areas.osm.json"
+  }
+}

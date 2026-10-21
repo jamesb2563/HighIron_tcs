@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HighIron TCS harness</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --panel: #1f2f38;
+      --panel-2: #283b46;
+      --ink: #e4ecef;
+      --ink-dim: #9fb2ba;
+      --line: #3a525e;
+      --dir-a: #f2b134;   /* authority a->b */
+      --dir-b: #5bb8cc;   /* authority b->a */
+      --occupied: #e0533f;
+      --focus: #ffd98a;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; }
+    body {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      font: 15px/1.45 Barlow, system-ui, sans-serif;
+      color: var(--ink);
+      background: var(--panel);
+    }
+    #map { height: 100%; }
+    .leaflet-tile-pane { filter: grayscale(0.75) contrast(0.9) brightness(1.05); }
+    aside { overflow-y: auto; padding: 18px 18px 40px; border-right: 1px solid var(--line); }
+    h1 {
+      font: 600 26px/1.1 'Barlow Condensed', sans-serif;
+      letter-spacing: 0.01em;
+      margin: 0 0 4px;
+    }
+    h2 {
+      font: 600 18px/1.2 'Barlow Condensed', sans-serif;
+      margin: 22px 0 8px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+    p.note { color: var(--ink-dim); margin: 0 0 12px; font-size: 14px; }
+    label { display: block; font-size: 13px; color: var(--ink-dim); margin: 8px 0 3px; }
+    select, input[type=number] {
+      width: 100%; padding: 6px 8px; font: inherit; color: var(--ink);
+      background: var(--panel-2); border: 1px solid var(--line); border-radius: 3px;
+    }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    button, .file {
+      display: inline-block; font: 500 14px Barlow, sans-serif; color: var(--panel);
+      background: var(--ink); border: 0; border-radius: 3px; padding: 7px 12px; margin: 8px 6px 0 0; cursor: pointer;
+    }
+    button.secondary, .file { background: var(--panel-2); color: var(--ink); border: 1px solid var(--line); }
+    button[aria-pressed=true] { background: var(--dir-a); color: var(--panel); border-color: var(--dir-a); }
+    button:focus-visible, select:focus-visible, input:focus-visible, .file:focus-within { outline: 2px solid var(--focus); outline-offset: 2px; }
+    .file input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+    .clock { font: 600 22px 'Barlow Condensed', sans-serif; margin-left: 6px; vertical-align: middle; }
+    .legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 13px; color: var(--ink-dim); margin-top: 10px; }
+    .legend span::before { content: ''; display: inline-block; width: 18px; height: 4px; margin-right: 6px; vertical-align: middle; background: var(--c); }
+    ul { list-style: none; margin: 0; padding: 0; }
+    #trains li { padding: 7px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+    #trains b { font-weight: 500; }
+    #trains .why { display: block; color: var(--ink-dim); font-size: 13px; }
+    #trains .x { float: right; background: none; color: var(--ink-dim); padding: 0 4px; margin: 0; }
+    #log { font-size: 13px; color: var(--ink-dim); max-height: 220px; overflow-y: auto; }
+    #log li { padding: 2px 0; }
+    #log time { color: var(--ink); margin-right: 6px; font-variant-numeric: tabular-nums; }
+    .legend .sig::before { width: 10px; height: 10px; border-radius: 50%; }
+    .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--c); margin-right: 6px; vertical-align: middle; }
+    .ctl { display: block; margin-top: 4px; }
+    .ctl button, .pop button { margin: 2px 4px 0 0; padding: 3px 8px; font-size: 13px; background: var(--panel-2); color: var(--ink); border: 1px solid var(--line); }
+    .pop button { background: #283b46; }
+    .pri { display: inline-block; min-width: 2.2em; text-align: center; font-variant-numeric: tabular-nums; }
+    .il-icon { width: 10px; height: 10px; background: var(--ink); border: 2px solid var(--panel); }
+    .il-icon.end { border-radius: 50%; }
+    @media (max-width: 760px) {
+      body { grid-template-columns: 1fr; grid-template-rows: 55vh auto; }
+      #map { grid-row: 1; }
+      aside { grid-row: 2; border-right: 0; }
+    }
+  </style>
+</head>
+<body>
+  <aside>
+    <h1>HighIron TCS harness</h1>
+    <p class="note">Track graph, dispatcher and railnet built from OpenStreetMap rail data. In the track view, coloured track is under a train’s authority, red blocks are reserved for the train approaching them, and each train’s next signal is shown by aspect (a dashed ring means a diverging route). The railnet view shows lines by operator, with double track drawn thicker.</p>
+
+    <button id="loadJax">Load Jacksonville</button>
+    <button class="secondary" id="loadSample">Load sample line</button>
+    <label class="file">Open data file<input type="file" id="fileInput" accept=".json,application/json"></label>
+    <p class="note" id="netInfo"></p>
+    <div role="group" aria-label="Map view">
+      <button class="secondary view" data-view="track" aria-pressed="true">Track and signals</button>
+      <button class="secondary view" data-view="railnet" aria-pressed="false">Railnet</button>
+    </div>
+
+    <h2>Add a train</h2>
+    <div class="row">
+      <div><label for="from">From</label><select id="from"></select></div>
+      <div><label for="to">To</label><select id="to"></select></div>
+    </div>
+    <div class="row">
+      <div><label for="len">Length (m)</label><input id="len" type="number" value="1500" min="100" step="100"></div>
+      <div><label for="spd">Top speed (mph)</label><input id="spd" type="number" value="60" min="10" step="5"></div>
+    </div>
+    <div class="row">
+      <div><label for="pri">Priority</label><select id="pri"><option value="0">Normal</option><option value="1">1</option><option value="2">2</option><option value="3">3 (hot)</option></select></div>
+      <div><label for="then">Then (from a yard)</label><select id="then"></select></div>
+    </div>
+    <button id="addTrain">Add train</button>
+    <p class="note">Click any track for slow orders or to take it out of service. Hold, release and priority are on each train below.</p>
+
+    <h2>Simulation</h2>
+    <button id="play" aria-pressed="false">Run</button>
+    <span class="clock" id="clock">00:00</span>
+    <div>
+      <button class="secondary speed" data-x="10" aria-pressed="false">×10</button>
+      <button class="secondary speed" data-x="60" aria-pressed="true">×60</button>
+      <button class="secondary speed" data-x="240" aria-pressed="false">×240</button>
+    </div>
+    <div>
+      <button class="secondary" id="save">Save</button>
+      <button class="secondary" id="restore">Restore save</button>
+    </div>
+    <div class="legend">
+      <span style="--c: var(--dir-a)">Authority a→b</span>
+      <span style="--c: var(--dir-b)">Authority b→a</span>
+      <span style="--c: var(--occupied)">Block reserved</span>
+      <span class="sig" style="--c: #3fae6a">Clear</span>
+      <span class="sig" style="--c: #f2b134">Approach</span>
+      <span class="sig" style="--c: #d9483b">Stop</span>
+    </div>
+
+    <h2>Trains</h2>
+    <ul id="trains"></ul>
+
+    <h2>Dispatcher log</h2>
+    <ul id="log"></ul>
+  </aside>
+  <div id="map"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script type="module" src="./demo.js"></script>
+</body>
+</html>
